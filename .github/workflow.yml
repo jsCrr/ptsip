@@ -1,0 +1,30 @@
+name: Minha Ação Automatizada
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Verificar o código
+      uses: actions/checkout@v2
+      
+    - name: Configurar o Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Instalar dependências
+      run: npm install
+
+    - name: Build e Teste
+      run: npm run build
+
+    - name: Publicar no GitHub Pages
+      run: |
+        if [ ${{ github.ref }} = 'refs/heads/main' ]; then
+          # Coloque aqui os comandos para publicar no GitHub Pages
+        fi
